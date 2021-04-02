@@ -1,7 +1,16 @@
 
-<tr><td><%=item["name"]%></td>
-<td><%=item["price"]%></td>
-<td><img src="/uploads/<%=item["image"]%>" class="mypic"/></td>
-<td><%=item["date"]%></td>
+<tr><td><%=item["artist"]%> - <%=item["title"]%></td>
+<td>
+<form method="post" action="/script1">
+<div class="field">
+<input type="hidden" value="<%=item["id"]%>" name="myid"/>
+</div>
+<div class="actions">
+<input type="submit" value="script 1" name="ok"/>
+</div>
+</form>
+
+</td>
+<td><%=item["tonalitedepart"]%> à <%=item["tonalitearrive"]%></td>
 
 </tr>

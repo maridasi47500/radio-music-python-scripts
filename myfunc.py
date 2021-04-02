@@ -34,8 +34,6 @@ class Myfunc():
         return self.myargs
     def set_json(self,x):
         self.json=x
-        if self.json:
-          self.figure.set_body("")
     def get_json(self):
         return self.json
     def set_css(self,x):

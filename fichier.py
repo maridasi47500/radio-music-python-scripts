@@ -10,3 +10,11 @@ class Fichier:
     print(self.path+"/"+self.name)
     j=open(self.path+"/"+self.name, "rb")
     return j.read()
+  def ecrire(self,mycontent):
+    hey=open((self.path+"/"+self.name),"a")
+    hey.write(mycontent)
+    hey.close()
+  def ecriremusique(self,mycontent):
+    hey=open((self.path+"/"+self.name),"a+b")
+    hey.write(mycontent)
+    hey.close()

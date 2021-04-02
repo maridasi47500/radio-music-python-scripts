@@ -5,7 +5,7 @@ from render import Render
 from fichier import Fichier
 import subprocess
 from datetime import datetime
-from song import Song
+from mysong import Mysong
 from myfunc import Myfunc
 from myrecording import Myrecording
 class Hello(Myfunc):
@@ -13,7 +13,8 @@ class Hello(Myfunc):
     self.path=path
     self.title="my thrift shop"
     self.figure=Render(self.title)
-    self.recparams=["name","tonalitedepart","tonalitearrive","title","artist"]
+    self.dbSong=Mysong()
+    self.recparams=["title","artist","file","tonalitedepart","tonalitearrive","tonalitehauteur"]
   def mycss(self,param):
     self.figure.set_my_params("myid", param["myid"][0])
     self.css=True
@@ -102,20 +103,26 @@ class Hello(Myfunc):
     print("hi there")
     return self
   def myshop(self,myscrit):
-    self.figure.set_content(Fichier("./welcome","myshop.html").lire())
+    self.figure.set_my_params("mysongs", self.dbSong.getall())
+    self.figure.set_content(Fichier("./welcome","mysongs.html").lire())
     print("hi there")
     return self
   def hi(self,myscrit):
     self.figure.set_content(Fichier("./welcome","index.html").lire())
     print("hi there")
     return self
+  def render_some_json(self,x):
+    self.figure.set_json(x)
+    self.set_json(True)
+    print("func json")
+    return self
   def create(self,myscrit):
     xx=self.get_mydata()(uploads=self.recparams)
-    print("create with my params : ", xx)
-    rec=Myrecording(xx)
-    self.figure.set_content("<a>redirected permanently</a>")
+    print("file")
+    #print(xx["file"])
+    #print("create with my params : ", xx)
+    rec=self.dbSong.create(xx)
+    self.figure.set_my_params("redirect", "/songs")
+    print("func 1")
+    return self.render_some_json(Fichier("./welcome","redirect.json").lire())
 
-    if rec.create():
-      print("uploaded and save...")
-      self.set_redirect("/myshop")
-    return self

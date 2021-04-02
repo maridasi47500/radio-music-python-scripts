@@ -13,6 +13,7 @@ from urllib.parse import urlparse, parse_qs
 from hello import Hello
 from erreur import Erreur
 from route import Route
+from fichier import Fichier
 from render import Render
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
@@ -24,6 +25,7 @@ import cgi
 import shutil
 import mimetypes
 import re
+from os.path import exists as existe
 import sys
 #try:
 #    from cStringIO import StringIO #except ImportError:
@@ -35,37 +37,46 @@ class S(BaseHTTPRequestHandler):
         if uploads:
           myuploads={}
           ctype, pdict = cgi.parse_header(self.headers['Content-Type'])
-          print(pdict)
+          #print(pdict)
           try:
             pdict['boundary'] = bytes(pdict['boundary'], "utf-8")
           except:
             pdict['boundary'] = bytes("", "utf-8")
           pdict['CONTENT-LENGTH'] = int(self.headers['Content-Length'])
-          print(ctype, "type of form")
+          #print(ctype, "type of form")
           if ctype == 'multipart/form-data':
               form = cgi.FieldStorage( fp=self.rfile, headers=self.headers, environ={'REQUEST_METHOD':'POST', 'CONTENT_TYPE':self.headers['Content-Type'], })
-              print(type(form), "=====> DEAL_POST_DATA typemyform")
-              print(uploads, "===> uploads")
+              #print(type(form), "=====> DEAL_POST_DATA typemyform")
+              #print(uploads, "===> uploads")
 
               if uploads:
                 for upload in uploads:
                   try:
-                      print("check ", upload)
+                      #print("check ", upload)
 
                       try:
-                        if form[upload].filename:
-                          myuploads[upload]=form[upload]
+                        myfilename=form[upload].filename
+                        lengthvalue=None
+                        if myfilename:
+                          print("filename",myfilename)
+                          myuploads[upload]=myfilename
+                          print("filename",myuploads[upload])
+                          lengthvalue=len(form[upload].value)
+                          print("longeur de",upload,lengthvalue)
+                          if not existe("/uploads/"+myfilename):
+                            Fichier("./uploads",myfilename).ecriremusique(form[upload].value)
                         else:
-                          print("my name")
-                          print(form[upload].value)
+                          #print("my name")
                           myuploads[upload]=form[upload].value
                       except Exception as e:
+                          print("erreur not filename")
                           print(e)
-                          print("this name")
 
+                          mylengthvalue=len(form[upload].value)
+                          print("longeur de",upload,mylengthvalue)
                           myuploads[upload]=form[upload].value
                       finally:
-                          print("suivant", myuploads)
+                          print("suivant", "hey")
                   except IOError:
                           #return (False, "Can't create file to write, do you have permission to write?")
                           return myuploads
@@ -84,6 +95,7 @@ class S(BaseHTTPRequestHandler):
         elif music:
           self.send_header('Content-type', 'audio/'+music)
         elif json:
+          print("my json header")
           self.send_header('Content-type', 'application/json')
         elif js:
           self.send_header('Content-type', 'text/javascript')
@@ -118,13 +130,13 @@ class S(BaseHTTPRequestHandler):
 
 
            
-           print(params)
+           #print(params)
            print("myparams")
            myProgram=Route().get_route(myroute=self.path.split("?")[0],myparams=params,mydata=False)
 
            self._set_response(pic=myProgram.get_pic(), js=myProgram.get_js(),music=myProgram.get_music(),redirect=myProgram.get_redirect(),css=myProgram.get_css(),json=myProgram.get_json())
            
-           print(myProgram, "y mrograù")
+           #print(myProgram, "y mrograù")
            html=myProgram.get_html()
            #print(html)
            self.wfile.write(bytes(html))
@@ -157,7 +169,7 @@ class S(BaseHTTPRequestHandler):
                  str(self.path), str(self.headers), post_data)
           myProgram=Route().get_route(myroute=self.path.split("?")[0],myparams={},mydata=self.deal_post_data)
           self._set_response(pic=myProgram.get_pic(), js=myProgram.get_js(),music=myProgram.get_music(),redirect=myProgram.get_redirect(),css=myProgram.get_css(),json=myProgram.get_json())
-          print(myProgram,post_data, "y mrograù")
+          #print(myProgram,post_data, "y mrograù")
           html=myProgram.get_html()
           #print(html)
           self.wfile.write(bytes(html))

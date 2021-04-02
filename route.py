@@ -4,15 +4,18 @@ from xmas import Xmas
 from erreur import Erreur
 from mypic import Pic
 from son import Son
+from program import Myprogram
 from render import Render
 from javascript import Js
 from pythonscript import Pythonscript
 from stylesheet import Css
+from subprocess import check_output as runmyscript
 
 
 class Route():
   def __init__(self):
     self.params={}
+    self.myprogram=Myprogram
     self.route={
 
 r"^/songs/jouerunechanson$":"Hello#jouerchanson",
@@ -22,6 +25,8 @@ r"^/xmas$":"Xmas#hello",
 r"^/passage$":"Hello#passage",
 r"^/songs/musique$":"Hello#jouerchanson",
 r"^/ajouterunemusique$":"Hello#new",
+r"^/create$":"Hello#create",
+r"^/songs$":"Hello#myshop",
 r"^/somecss$":"Hello#mycss",
 
 r"^/$":"Hello#hi"

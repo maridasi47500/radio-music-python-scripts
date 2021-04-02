@@ -131,13 +131,23 @@ class Render():
     if len(mybody) > 0:
       if type(mybody) is bytes:
         print(mybody)
+        self.body=str(mybody)
+      else:
+        self.body=mybody
+    else:
+      self.body+=''
+  def set_body(self,mybody):
+      self.body=mybody
+  def set_content_redirect(self,mybody):
+    self.template=False
+    if len(mybody) > 0:
+      if type(mybody) is bytes:
+        print(mybody)
         self.body+=str(mybody)
       else:
         self.body+=mybody
     else:
       self.body+=''
-  def set_body(self,mybody):
-      self.body=mybody
   def set_content(self,mybody):
     if len(mybody) > 0:
       if type(mybody) is bytes:
