@@ -16,6 +16,7 @@ class Myfunc():
     someparam={}
     my_params=figure.get_my_params()
     myattributes=[]
+    figure=False
     
     myprmogram=False
     run=False
@@ -33,10 +34,14 @@ class Myfunc():
         return self.myargs
     def set_json(self,x):
         self.json=x
+        if self.json:
+          self.figure.set_body("")
     def get_json(self):
         return self.json
     def set_css(self,x):
         self.css=x
+        if self.css:
+          self.figure.set_body("")
     def get_css(self):
         return self.css
     def set_redirect(self,x):

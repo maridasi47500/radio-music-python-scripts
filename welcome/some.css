@@ -1,0 +1,15 @@
+#<%=my_params["myid"]%> {
+animation-name: slideIn<%=my_params["myid"]%>;
+animation-duration:10s;
+animation-iteration-count:infinite;
+position:absolute;
+z-index:10000;
+left:<%=my_params["myleft"]%>vw;
+top:<%=my_params["mytop"]%>vh;
+}
+
+
+@keyframes slideIn<%=my_params["myid"]%>{
+<%=render_collection(path="./welcome", view="_css.css", mycollection=my_params["lists"], erreur="pas d'articles", as_="css")%>
+
+}

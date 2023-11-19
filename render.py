@@ -5,7 +5,7 @@ class Render():
   def __init__(self,title):
     self.title=title
     self.body=title
-    self.template="./template/index.html"
+    self.template="./template/radio.html"
     self.headingone=title
     self.collection={}
     self.my_params={"myoutput":""}
@@ -64,6 +64,7 @@ class Render():
       string=""
       count=0
       print(len(mycollection),"my collection")
+      index=0
       for res in mycollection:
         for x in myview.split("<%="):
            if "%>" not in x: 
@@ -78,12 +79,13 @@ class Render():
              except:
                mystr=""
              try:
-               loc={as_: res}
+               loc={"index":index,as_: res}
                print(loc)
                string+=str(eval(myexpr, globals(), loc))
              except:
                string+=""
              string+=mystr
+        index+=1
 
       return string
     except Exception as e:

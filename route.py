@@ -2,6 +2,7 @@ import re
 from hello import Hello
 from erreur import Erreur
 from mypic import Pic
+from son import Son
 from render import Render
 from javascript import Js
 from stylesheet import Css
@@ -11,13 +12,15 @@ class Route():
   def __init__(self):
     self.params={}
     self.route={
-r"/$":"Hello#hi",
-r"/bienvenue$":"Hello#hi",
-r"/new$":"Hello#new",
-r"/create$":"Hello#create",
-r"/dates$":"Hello#dates",
-r"/mysum$":"Hello#mysum",
-r"/myshop$":"Hello#myshop",
+
+r"^/songs/jouerunechanson$":"Hello#jouerchanson",
+r"^/songs/playmusique1$":"Hello#jouerchanson",
+r"^/songs/playmusique$":"Hello#jouerchanson",
+r"^/passage$":"Hello#passage",
+r"^/songs/musique$":"Hello#jouerchanson",
+r"^/somecss$":"Hello#mycss",
+
+r"^/$":"Hello#hi"
 
 }
   def get_route(self,myroute,myparams,mydata=None):
@@ -31,6 +34,9 @@ r"/myshop$":"Hello#myshop",
     elif myroute.endswith("png"):
         myProgram=Pic(myroute)
         return myProgram
+    elif myroute.endswith(".mp3"):
+        myProgram=Son(name=myroute)
+        return myProgram
     elif myroute.endswith(".wav"):
         myProgram=Son(name=myroute)
         return myProgram
@@ -43,7 +49,7 @@ r"/myshop$":"Hello#myshop",
     else:
         for i in self.route:
           j=self.route[i]
-          if re.match(myroute, i):
+          if re.match(i,myroute):
             print(j, "my func found")
             loc = {}
             print("myvar="+j.split("#")[0]+"('"+j.split("#")[1]+"').work(params=params).encode()".format(params=myparams))
