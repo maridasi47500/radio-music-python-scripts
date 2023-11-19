@@ -1,3 +1,3 @@
 <%=index*10%>% {
-transform: translate(<%=css["left"]%>vw <%=css["top"]%>vh);
+transform: translate(<%=css["left"]%>vw, <%=css["top"]%>vh);
 }

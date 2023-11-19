@@ -1,5 +1,6 @@
 import re
 from hello import Hello
+from xmas import Xmas
 from erreur import Erreur
 from mypic import Pic
 from son import Son
@@ -16,6 +17,7 @@ class Route():
 r"^/songs/jouerunechanson$":"Hello#jouerchanson",
 r"^/songs/playmusique1$":"Hello#jouerchanson",
 r"^/songs/playmusique$":"Hello#jouerchanson",
+r"^/xmas$":"Xmas#hello",
 r"^/passage$":"Hello#passage",
 r"^/songs/musique$":"Hello#jouerchanson",
 r"^/somecss$":"Hello#mycss",
@@ -29,6 +31,9 @@ r"^/$":"Hello#hi"
 
     self.params=myparams
     if myroute.endswith("ico"):
+        myProgram=Pic(myroute)
+        return myProgram
+    elif myroute.endswith("webp"):
         myProgram=Pic(myroute)
         return myProgram
     elif myroute.endswith("png"):

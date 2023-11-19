@@ -1,11 +1,11 @@
-#<%=my_params["myid"]%> {
+#<%=my_params["myid"]%>.xmas {
 animation-name: slideIn<%=my_params["myid"]%>;
 animation-duration:10s;
 animation-iteration-count:infinite;
 position:absolute;
 z-index:10000;
-left:<%=my_params["myleft"]%>vw;
-top:<%=my_params["mytop"]%>vh;
+top:0px;
+left:<%=my_params["left"] or 0%>vw;
 }
 
 

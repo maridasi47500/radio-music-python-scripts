@@ -27,15 +27,17 @@ class Hello(Myfunc):
     premier=True
     for i in range(11):
 
+
+      
+      left-=random.randrange(1,5)
+      myotherlist.insert(0,left)
       el1=random.randrange(i*10,(i*10 +10))
       mylist.append(el1)
-      
-      left+=random.randrange(1,5)
-      myotherlist.insert(0,left)
     i=0
     for x in mylist:
-      left=mylist[i]
-      el1=myotherlist[i]
+
+      left=myotherlist[i]
+      el1=mylist[i]
       lists.append({"left":left, "top": el1})
       i+=1 
       if premier:

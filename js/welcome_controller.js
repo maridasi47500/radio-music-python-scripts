@@ -72,6 +72,9 @@ function init() {
         var paspremier=false;
 	var mydata;
                     audio1.src="/uploads/shakira-acrostico.mp3";
+               if (audio1 && !audio1.paused){
+                    audio1.pause();
+               }
                     audio1.play();
 			goBut.src = pausePic;
        
@@ -94,6 +97,7 @@ var xxxxx=randomString(10);
 console.log("heure de passage ")
 $('head').append("<style>"+data+"</style>");
 $('body').append("<div class=\"noel\" id=\""+xxxxx+"\"></div>");
+$("#"+xxxxx).addClass("xmas");
                         }});
                     audio1.src=('/uploads/'+data.song.filename);
 
