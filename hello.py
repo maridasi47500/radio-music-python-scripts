@@ -13,7 +13,7 @@ class Hello(Myfunc):
     self.path=path
     self.title="my thrift shop"
     self.figure=Render(self.title)
-    self.recparams=["name","image","price","date"]
+    self.recparams=["name","tonalitedepart","tonalitearrive","title","artist"]
   def mycss(self,param):
     self.figure.set_my_params("myid", param["myid"][0])
     self.css=True
@@ -84,6 +84,21 @@ class Hello(Myfunc):
     return self
   def new(self,myscrit):
     self.figure.set_content(Fichier("./welcome","new.html").lire())
+    note=[
+    ["c","do"],
+    ["c#","do#"],
+    ["d","re"],
+    ["d#","re"],
+    ["e","mi"],
+    ["f","fa"],
+    ["f#","fa#"],
+    ["g","sol"],
+    ["g#","sol#"],
+    ["a","la"],
+    ["a#","la#"],
+    ["b","si"],
+    ]
+    self.figure.set_my_params("note", note)
     print("hi there")
     return self
   def myshop(self,myscrit):

@@ -6,6 +6,7 @@ from mypic import Pic
 from son import Son
 from render import Render
 from javascript import Js
+from pythonscript import Pythonscript
 from stylesheet import Css
 
 
@@ -20,6 +21,7 @@ r"^/songs/playmusique$":"Hello#jouerchanson",
 r"^/xmas$":"Xmas#hello",
 r"^/passage$":"Hello#passage",
 r"^/songs/musique$":"Hello#jouerchanson",
+r"^/ajouterunemusique$":"Hello#new",
 r"^/somecss$":"Hello#mycss",
 
 r"^/$":"Hello#hi"

@@ -42,7 +42,7 @@ class Render():
              except:
                mystr=""
              try:
-               loc={as_: res,"pasdernier":pasdernier,"paspremier": paspremier}
+               loc={"params":self.my_params,as_: res,"pasdernier":pasdernier,"paspremier": paspremier}
 
                print(loc)
                string+=str(eval(myexpr, globals(), loc))
@@ -79,7 +79,7 @@ class Render():
              except:
                mystr=""
              try:
-               loc={"index":index,as_: res}
+               loc={"params":self.my_params,"index":index,as_: res}
                print(loc)
                string+=str(eval(myexpr, globals(), loc))
              except:
@@ -106,7 +106,7 @@ class Render():
        if myinclude:
          try:
            print(myexpr, "monexpression")
-           loc={"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params}
+           loc={"params":self.my_params,"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params}
            exec("myres="+myexpr,globals(),loc)
            if type(loc["myres"]) is bytes:
              string+=loc["myres"].decode()

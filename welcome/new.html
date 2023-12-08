@@ -1,19 +1,35 @@
 <form id="myform" action="/create" method="post">
 <div class="fields">
-<label for="name">name</label>
-<input name="name" id="name" type="text"/>
+<label for="title">title</label>
+<input name="title" id="title" type="text"/>
 </div>
 <div class="fields">
-<label for="image">image</label>
-<input name="image" id="image" type="file"/>
+<label for="artist">artist</label>
+<input name="artist" id="artist" type="text"/>
 </div>
 <div class="fields">
-<label for="price">prix</label>
-<input name="price" id="price" step="0.01"  type="number"/>
+<label for="file">file</label>
+<input name="file" id="file"  type="file"  onchange="previewPicture(this)" accept="audio/*,video/*"/>
 </div>
 <div class="fields">
-<label for="date">date</label>
-<input name="date" id="date" type="date"/>
+<label for="tonalitedepart">depart</label>
+<select name="tonalitedepart" id="tonalitedepart">
+<%=render_collection(path="./welcome", view="_note.html", mycollection=params['note'], erreur="pas d'articles", as_="note")%>
+</select>
+</div>
+<div class="fields">
+<label for="tonalitearrivee">depart</label>
+<select name="tonalitearrivee" id="tonalitearrivee">
+<%=render_collection(path="./welcome", view="_note.html", mycollection=params['note'], erreur="pas d'articles", as_="note")%>
+</select>
+</div>
+<div class="fields">
+<label for="tonalitehauteur">depart</label>
+<select name="tonalitehauteur" id="tonalitehauteur">
+<option value="">plus haute</option>
+<option value="-">plus basse</option>
+
+</select>
 </div>
 <div class="actions">
 <input name="submit" id="ok" type="submit"/>

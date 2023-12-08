@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{debutdemesmots}
-Ecoutez Mistral FM - Tous les Hits - en live</title>
+    <title>{debutdemesmots} Ecoutez Mistral FM - Tous les Hits - en live</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta charset="utf-8"/>
 
@@ -15,7 +14,7 @@ Ecoutez Mistral FM - Tous les Hits - en live</title>
     <link href="/css/welcome.css" rel="stylesheet" />
     <link href="/css/application.css" rel="stylesheet" />
     <link href="/css/recordings.css" rel="stylesheet" />
-    <link href="/css/xmas.css" rel="stylesheet" />
+    <link href="/css/violin.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -68,6 +67,7 @@ Ecoutez Mistral FM - Tous les Hits - en live</title>
     <label for="menu2">RADIO <span>+</span></label>
     <input id="menu2" type="checkbox" name="menu" onchange="$('[for='+this.id+'] span').html(this.checked ? '-' : '+');" />
     <ul class="sub">
+      <li><a href="/ajouterunemusique">ajouter une musique</a></li>
     </ul>
   </li>
   <li class="has-sub">
@@ -211,8 +211,11 @@ My AD!!    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-     <script src="/js/hit_controller.js"></script>
+
      <script src="/js/welcome_controller.js"></script>
+     <script src="/js/index.js"></script>
+     <script src="/js/hit_controller.js"></script>
+
      <script src="/js/hello_controller.js"></script>
 
   <script>
