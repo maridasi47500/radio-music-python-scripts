@@ -6,6 +6,7 @@ class Pythonscript:
   def set_args(self,myargs):
     self.myargs=myargs
   def lancer(self):
+    myprogram=[]
     if self.name.endswith(".py"):
       myprogram=["python3",self.name]
     elif self.name.endswith(".sh"):

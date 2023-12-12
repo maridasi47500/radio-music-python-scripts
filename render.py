@@ -1,4 +1,5 @@
 from fichier import Fichier
+from testscript import Testscript
 import os
 from db import Db
 class Render():
@@ -106,7 +107,7 @@ class Render():
        if myinclude:
          try:
            print(myexpr, "monexpression")
-           loc={"params":self.my_params,"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params}
+           loc={"params":self.my_params,"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params,"Fichier":Fichier,"Testscript":Testscript}
            exec("myres="+myexpr,globals(),loc)
            if type(loc["myres"]) is bytes:
              string+=loc["myres"].decode()

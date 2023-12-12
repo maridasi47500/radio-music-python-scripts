@@ -5,6 +5,7 @@ from erreur import Erreur
 from mypic import Pic
 from son import Son
 from program import Myprogram
+from messcripts import Messcripts
 from render import Render
 from javascript import Js
 from pythonscript import Pythonscript
@@ -28,6 +29,9 @@ r"^/ajouterunemusique$":"Hello#new",
 r"^/create$":"Hello#create",
 r"^/songs$":"Hello#myshop",
 r"^/somecss$":"Hello#mycss",
+r"^/script1$":"Messcripts#script1",
+r"^/script2$":"Messcripts#script2",
+r"^/script3$":"Messcripts#script3",
 
 r"^/$":"Hello#hi"
 

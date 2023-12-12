@@ -25,10 +25,12 @@ class Messcripts(Myfunc):
     myid=xx["myid"]
     song=self.dbSong.getbyid(myid)
    
-    programs=self.myprogram()
-    programs.myargs(["./messcript/changetone.sh"])
-    self.figure.set_my_params("mytop", top1)
-    self.figure.set_json(Fichier("./welcome","some.css").lire())
+    programs=self.myprogram(song["file"])
+    programs.myargs(["cd","./messcript/changetone.sh"])
+    programs.myargs(["./changetone.sh","../uploads/"+song["file"]])
+    programs.run()
+    self.figure.set_my_params("redirect", "/songs")
+    self.figure.set_json(Fichier("./welcome","redirect.json").lire())
 
     return self
   def get_figure(self):

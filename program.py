@@ -7,5 +7,5 @@ class Myprogram:
   def myargs(self,a):
     self.someargs=a
   def run(self):
-    self.runprogram(self.someargs)
+    runmyscript(self.someargs)
     
