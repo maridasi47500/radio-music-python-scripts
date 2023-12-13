@@ -1,27 +1,40 @@
-import re
-from hello import Hello
-from erreur import Erreur
-from render import Render
-
-
-class Route():
-  def __init__(self):
-    self.route={
-"^/bluetooth$":"Hello#bluetooth",
-"^/variables$":"Hello#variable",
-"^/airpods$":"Hello#airpods",
-"/$":"Hello#hi",
-}
-  def get_route(self,myroute):
-    print(myroute)
-    print("myroute")
-    for i in self.route:
-      j=self.route[i]
-      if re.match(myroute, i):
-        loc = {}
-        print("myvar="+j.split("#")[0]+"('"+j.split("#")[1]+"').work().encode()")
-        exec("myvar="+j.split("#")[0]+"('"+j.split("#")[1]+"').work().encode()",globals(),loc)
-        print(loc)
-        return loc["myvar"]
-    mytext=(Erreur().err404().encode())
-    return mytext
+from fichier import Fichier
+from os import listdir as liste
+class Testscript:
+    def __init__(self,path,name):
+      self.path=path
+      self.name=name
+    def existe(self):
+      mymusic=".wav"
+      myname=self.name.replace(".mp3",mymusic)
+      myname=myname.replace(".mp4",mymusic)
+      return Fichier(self.path,myname).existe()
+    def messcripts(self):
+      mymusic=".wav"
+      myname=self.name.replace(".mp3",mymusic)
+      myname=myname.replace(".mp4",mymusic)
+      maliste=[]
+      print(liste(self.path))
+      for x in liste(self.path):
+          print(x,myname)
+          if myname in x and x != myname and "faster" not in x:
+              note=x.split("_")
+              note1=note[1]
+              note2=note[2]
+              maliste.append({"hey":"","file":x,"note1":note1, "note2":note2})
+      return maliste
+    def messcriptsplusvite(self):
+      mymusic=".wav"
+      myname=self.name.replace(".mp3",mymusic)
+      myname=myname.replace(".mp4",mymusic)
+      maliste=[]
+      print(liste(self.path))
+      for x in liste(self.path):
+          print(x,myname)
+          if myname in x and x != myname and "faster" in x:
+              note=x.split("_")
+              note1=note[3]
+              hey="yes"
+              note2=note[4]
+              maliste.append({"hey":hey,"file":x,"note1":note1, "note2":note2})
+      return maliste

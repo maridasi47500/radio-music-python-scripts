@@ -58,7 +58,8 @@ class Mysong(Model):
           self.con.commit()
           myid=str(self.cur.lastrowid)
         except Exception as e:
-          print("my error"+str(e))
+          print("my error")
+          #print("my error"+str(e))
         azerty={}
         azerty["mysong_id"]=myid
         azerty["notice"]="votre mysong a été ajouté"

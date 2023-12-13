@@ -80,7 +80,7 @@ class Render():
              except:
                mystr=""
              try:
-               loc={"params":self.my_params,"index":index,as_: res}
+               loc={"params":self.my_params,"index":index,as_: res,"Testscript":Testscript,"render_collection":self.render_collection}
                print(loc)
                string+=str(eval(myexpr, globals(), loc))
              except:

@@ -37,3 +37,26 @@ border-radius:777777px;
   background-repeat: no-repeat; 
   cursor: pointer;
 }
+datalist {
+	  display: flex;
+	    flex-direction: column;
+	      justify-content: space-between;
+	        writing-mode: vertical-lr;
+		  width: 200px;
+	  }
+
+	  option {
+		    padding: 0;
+	    }
+
+	    input[type="range"].hello {
+		      width: 200px;
+		      height:10px;
+		        margin: 0;
+		}
+		progress {
+			    position: fixed;
+			        bottom: 0;
+				    width: 100%;
+				        display: none;
+				}

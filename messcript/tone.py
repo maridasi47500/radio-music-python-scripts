@@ -6,7 +6,7 @@ from numpy.random import uniform
 tones=["f","f#","g","g#","a","a#","b","c","c#","d","d#","e","f","f#","g","g#","a","a#","b","c","c#","d","d#","e","f"]
 filename = sys.argv[1]
 ton_a = sys.argv[2]
-ton_b = sys.argv[3]
+ton_b = sys.argv[3].replace(".wav","")
 higher=True
 try:
     x=ton_b.index("-")
@@ -65,7 +65,8 @@ hipitch_sound = hipitch_sound.set_frame_rate(44100)
 print(ton_b)
 mynote=tones[counter]
 print(counter)
-hipitch_sound.export(f"octave_{ton_b}_{octaves}.wav", format="wav")
+myfilename=filename[:-4].split("/")[-1]
+hipitch_sound.export(f"./uploads/octave_{ton_a}_{ton_b}_{octaves}_{myfilename}.wav", format="wav")
 try:
 
   counter+=1

@@ -89,7 +89,7 @@ function init() {
 		posSlider.max= window.audio1.duration; posSlider.setAttribute('min', 0);
                 //console.log(minduration);
                 window.audio1.currentTime = 0;
-                   if (!audio.paused){
+                   if (!window.audio1.paused){
                     window.audio1.pause();
                    }
 

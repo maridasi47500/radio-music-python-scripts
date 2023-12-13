@@ -8,10 +8,60 @@
 <div class="actions">
 <input type="submit" value="script 1" name="ok"/>
 </div>
-<%=Testscript.existe("./uploads",item["file"]) ? "le script 1 a été exécuté"%>
+
 </form>
 
 </td>
-<td><%=item["tonalitedepart"]%> à <%=item["tonalitearrive"]%></td>
+<td>
+<%="le script 1 a été exécuté" if Testscript("./uploads",item["file"]).existe() else ""%>
+</td>
+<td>
+<form method="post" action="/script2">
+<div class="field">
+<input type="hidden" value="<%=item["id"]%>" name="myid"/>
+</div>
+<div class="actions">
+<input type="submit" value="script 2" name="ok"/>
+</div>
+
+</form>
+
+</td>
+<td>
+	script 2:
+	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Testscript("./uploads",item["file"]).messcripts(), erreur="pas d'articles", as_="myfile")%>
+</td>
+<td>
+	<%=item["tonalitedepart"]%> à <%=item["tonalitearrive"]%></td>
+<td>
+	<label for="vitesse<%=item["id"]%>">vitesse</label>
+
+</td>
+<td>
+<form method="post" action="/script3">
+<div class="field">
+
+
+	<input id="vitesse<%=item["id"]%>" class="hello" list="values<%=item["id"]%>" type="range" value="0" min="0" max="100" name="vitesse"/>
+<datalist id="values<%=item["id"]%>">
+	  <option value="0" label="moins vite!"></option>
+	      <option value="50" label="même vitesse"></option>
+		  <option value="100" label="plus vite!"></option>
+</datalist>
+</div>
+<div class="field">
+<input type="hidden" value="<%=item["id"]%>" name="myid"/>
+</div>
+<div class="actions">
+<input type="submit" value="script 3" name="ok"/>
+</div>
+
+</form>
+
+	</td>
+<td>
+	script 3 plus/moins vite:
+	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Testscript("./uploads",item["file"]).messcriptsplusvite(), erreur="pas d'articles", as_="myfile")%>
+</td>
 
 </tr>

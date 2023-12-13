@@ -15,8 +15,11 @@ from erreur import Erreur
 from route import Route
 from fichier import Fichier
 from render import Render
+from chaine import Chaine
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
+import random, string
+
 
 #files
 import os
@@ -59,12 +62,17 @@ class S(BaseHTTPRequestHandler):
                         lengthvalue=None
                         if myfilename:
                           print("filename",myfilename)
+                          myfilename=Chaine().fichier(myfilename)
                           myuploads[upload]=myfilename
                           print("filename",myuploads[upload])
                           lengthvalue=len(form[upload].value)
                           print("longeur de",upload,lengthvalue)
-                          if not existe("/uploads/"+myfilename):
+                          try: 
+                            print(existe("/uploads/"+myfilename))
                             Fichier("./uploads",myfilename).ecriremusique(form[upload].value)
+                          except Exception as e:
+                            print(e)
+
                         else:
                           #print("my name")
                           myuploads[upload]=form[upload].value

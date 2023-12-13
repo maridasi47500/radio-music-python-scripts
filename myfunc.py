@@ -22,6 +22,11 @@ class Myfunc():
     run=False
     path=False
     runthisprogram=False
+    def render_some_json(self,x):
+      self.figure.set_json(x)
+      self.set_json(True)
+      print("func json")
+      return self
     def set_someparam(self,x,y):
         self.someparam[x]=y
     def get_someparams(self):

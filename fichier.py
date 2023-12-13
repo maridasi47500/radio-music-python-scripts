@@ -4,7 +4,9 @@ class Fichier:
     self.path=path
     self.name=name
   def existe(self):
-    return existe(self.path+"/"+self.name)
+    x=existe(self.path+"/"+self.name)
+    print(x)
+    return x
   def lire(self):
     print(self.path+"/"+self.name)
     j=open(self.path+"/"+self.name, "r")

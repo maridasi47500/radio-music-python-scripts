@@ -7,62 +7,82 @@ import subprocess
 from datetime import datetime
 from song import Song
 from mysong import Mysong
+from chaine import Chaine
 from myfunc import Myfunc
 from myrecording import Myrecording
 from program import Myprogram
 
+
 class Messcripts(Myfunc):
   def __init__(self,path):
     self.path=path
-    self.title="my thrift shop"
+    self.title="chercher des tonalités"
     self.myprogram=Myprogram
     self.dbSong=Mysong()
     self.figure=Render(self.title)
     self.recparams=["name","tonalitedepart","tonalitearrive","title","artist"]
     self.myrecparams=["myid"]
+    self.vitesseparams=["vitesse","myid"]
   def script1(self,param):
     xx=self.get_mydata()(uploads=self.myrecparams)
     myid=xx["myid"]
     song=self.dbSong.getbyid(myid)
    
     programs=self.myprogram(song["file"])
-    programs.myargs(["cd","./messcript/changetone.sh"])
-    programs.myargs(["./changetone.sh","../uploads/"+song["file"]])
-    programs.run()
+
+    programs.myargs(["./messcript/changetone.sh","./uploads/"+song["file"]])
+    try:
+        if not Fichier("./uploads",song["file"].split(".")[0]+".wav").existe():
+           programs.run()
+    except:
+        print("script 1 déjà executé")
     self.figure.set_my_params("redirect", "/songs")
-    self.figure.set_json(Fichier("./welcome","redirect.json").lire())
+    self.render_some_json(Fichier("./welcome","redirect.json").lire())
 
     return self
   def get_figure(self):
     return self.figure
   def script2(self,myscrit):
-    filename=myscrit["title"][0].replace(".mp3","").split("/")[-1]
-    current_dateTime=datetime.now()
-    song=Song().save_heure_passage((filename,current_dateTime))
-    self.figure.set_my_params("title", song["title"])
-    self.figure.set_my_params("artist", song["artist"])
-    self.figure.set_my_params("filename", song["filename"])
-    self.figure.set_my_params("time", str(song["time"]))
+    xx=self.get_mydata()(uploads=self.myrecparams)
+    myid=xx["myid"]
+    song=self.dbSong.getbyid(myid)
+   
+    programs=self.myprogram(song["file"])
+    othername=song["file"].split(".")[0]+".wav"
+    #python3 tone.py in.wav a g
+    programs.myargs(["python3","./messcript/tone.py","./uploads/"+othername, song["tonalitedepart"], song["tonalitearrive"]])
+    try:
+        programs.run()
+    except:
+        print("script 2 déjà executé")
+    self.figure.set_my_params("redirect", "/songs")
+    self.render_some_json(Fichier("./welcome","redirect.json").lire())
 
-    self.set_json(True)
-    self.figure.set_body("")
-    self.figure.set_json(Fichier("./welcome","chansonpassages.json").lire())
-    print("hi there")
     return self
   def script3(self,myscrit):
-    mylist=os.listdir("../radiohaker/public/uploads")
-    k=random.randrange(0,(len(mylist) - 1))
-    filename=mylist[k]
-    print("filename =",filename)
-    self.figure.set_my_params("filename", "/uploads/"+filename)
-    song=Song().get_song((filename.replace(".mp3",""),))
-    self.figure.set_my_params("title", song["title"])
-    self.figure.set_my_params("artist", song["artist"])
+    xx=self.get_mydata()(uploads=self.vitesseparams)
+    myid=xx["myid"]
+    vitesse=xx["vitesse"]
+    song=self.dbSong.getbyid(myid)
+   
+    programs=self.myprogram(song["file"])
+    othername=song["file"].split(".")[0]+".wav"
+    #python3 tone.py in.wav a g
+    hey=int(vitesse)
+    if hey==50:
+        hey=50
+    elif hey > 50:
+        hey=(hey-50)*2
+    elif hey < 50:
+        hey=float(hey/50)
+    programs.myargs(["python3","./messcript/pluslent_saschangerlahauteur.py","./uploads/"+othername, str(hey)])
+    try:
+        programs.run()
+    except:
+        print("script 2 déjà executé")
+    self.figure.set_my_params("redirect", "/songs")
+    self.render_some_json(Fichier("./welcome","redirect.json").lire())
 
-    self.set_json(True)
-    self.figure.set_body("")
-    self.figure.set_json(Fichier("./welcome","chansons.json").lire())
-    print("hi there")
     return self
   def new(self,myscrit):
     self.figure.set_content(Fichier("./welcome","new.html").lire())

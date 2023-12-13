@@ -11,7 +11,7 @@ from myrecording import Myrecording
 class Hello(Myfunc):
   def __init__(self,path):
     self.path=path
-    self.title="my thrift shop"
+    self.title="Bienvenue dans ce repository - chercher des tonalités"
     self.figure=Render(self.title)
     self.dbSong=Mysong()
     self.recparams=["title","artist","file","tonalitedepart","tonalitearrive","tonalitehauteur"]

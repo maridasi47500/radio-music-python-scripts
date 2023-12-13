@@ -5,6 +5,9 @@ class Myprogram:
     self.someargs=[hey]
     self.runprogram=runmyscript
   def myargs(self,a):
+    #print(a)
+    for x in a:
+        print("arg len",len(x))
     self.someargs=a
   def run(self):
     runmyscript(self.someargs)
