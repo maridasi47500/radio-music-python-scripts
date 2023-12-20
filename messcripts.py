@@ -23,6 +23,7 @@ class Messcripts(Myfunc):
     self.recparams=["name","tonalitedepart","tonalitearrive","title","artist"]
     self.myrecparams=["myid"]
     self.vitesseparams=["vitesse","myid"]
+    self.vitesseparamshey=["vitesse","file"]
   def script1(self,param):
     xx=self.get_mydata()(uploads=self.myrecparams)
     myid=xx["myid"]
@@ -50,7 +51,7 @@ class Messcripts(Myfunc):
     programs=self.myprogram(song["file"])
     othername=song["file"].split(".")[0]+".wav"
     #python3 tone.py in.wav a g
-    programs.myargs(["python3","./messcript/tone.py","./uploads/"+othername, song["tonalitedepart"], song["tonalitearrive"]])
+    programs.myargs(["python3","./messcript/tone.py","./uploads/"+othername, song["tonalitedepart"], song["tonalitehauteur"]+song["tonalitearrive"]])
     try:
         programs.run()
     except:
@@ -60,13 +61,13 @@ class Messcripts(Myfunc):
 
     return self
   def script3(self,myscrit):
-    xx=self.get_mydata()(uploads=self.vitesseparams)
-    myid=xx["myid"]
+    xx=self.get_mydata()(uploads=self.vitesseparamshey)
+    #myid=xx["myid"]
     vitesse=xx["vitesse"]
-    song=self.dbSong.getbyid(myid)
+    #song=self.dbSong.getbyid(myid)
    
-    programs=self.myprogram(song["file"])
-    othername=song["file"].split(".")[0]+".wav"
+    programs=self.myprogram(xx["file"])
+    othername=xx["file"].split(".")[0]+".wav"
     #python3 tone.py in.wav a g
     hey=int(vitesse)
     if hey==50:

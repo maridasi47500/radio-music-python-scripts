@@ -37,26 +37,8 @@
 	<label for="vitesse<%=item["id"]%>">vitesse</label>
 
 </td>
+	<%=render_collection(path="./welcome", view="_hey.html", mycollection=Testscript("./uploads",item["file"]).messcripts(), erreur="pas d'articles", as_="item")%>
 <td>
-<form method="post" action="/script3">
-<div class="field">
-
-
-	<input id="vitesse<%=item["id"]%>" class="hello" list="values<%=item["id"]%>" type="range" value="0" min="0" max="100" name="vitesse"/>
-<datalist id="values<%=item["id"]%>">
-	  <option value="0" label="moins vite!"></option>
-	      <option value="50" label="même vitesse"></option>
-		  <option value="100" label="plus vite!"></option>
-</datalist>
-</div>
-<div class="field">
-<input type="hidden" value="<%=item["id"]%>" name="myid"/>
-</div>
-<div class="actions">
-<input type="submit" value="script 3" name="ok"/>
-</div>
-
-</form>
 
 	</td>
 <td>

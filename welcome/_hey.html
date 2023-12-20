@@ -1,0 +1,23 @@
+<td>
+	<a href="<%=item["file"]%>" title="<%="de "+item["note1"]+" à  "+item["note2"] if item["note1"] != "" else ""%> <%=item["hey"]+" fois plus vite" if item["hey"] != "" else ""%>" onclick="audio1.src='<%=item["file"]%>';audio1.load();return false;">&#9834</a>
+	<form method="post" action="/script3">
+		<div class="field">
+
+
+			<input id="vitesse<%=index%><%=item["id"]%>" class="hello" list="values<%=index%><%=item["id"]%>" type="range" value="0" min="0" max="100" name="vitesse"/>
+				<datalist id="values<%=index%><%=item["id"]%>">
+					          <option value="0" label="moins vite!"></option>
+						                <option value="50" label="mê me vitesse"></option>
+								                  <option value="100" label="plus vite!"></option>
+				</datalist>
+		</div>
+		<div class="field">
+			<input type="hidden" value="<%=item["file"]%>" name="file"/>
+		</div>
+		<div class="actions">
+			<input type="submit" value="script 3" name="ok"/>
+		</div>
+
+	</form>
+
+	        </td>

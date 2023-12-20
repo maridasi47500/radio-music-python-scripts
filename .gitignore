@@ -3,3 +3,4 @@ monscript/.env
 venv/bin/activate
 uploads/*
 venv
+myFileDb.db
