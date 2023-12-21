@@ -83,9 +83,11 @@ class Render():
                mystr=""
              try:
                loc={"Tonalite":self.tonalite,"params":self.my_params,("index_"+as_): index,"index":index,as_: res,"Testscript":Testscript,"render_collection":self.render_collection}
-               print(loc)
+               #print(loc)
+               print(myexpr)
                string+=str(eval(myexpr, globals(), loc))
-             except:
+             except Exception as e:
+               print("erreur",e)
                string+=""
              string+=mystr
         index+=1
@@ -109,7 +111,7 @@ class Render():
        if myinclude:
          try:
            print(myexpr, "monexpression")
-           loc={"params":self.my_params,"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params,"Fichier":Fichier,"Testscript":Testscript}
+           loc={"Tonalite":self.tonalite,"params":self.my_params,"render_collection_json":self.render_collection_json,"self": self,"Db":Db,"render_collection":self.render_collection, "my_params":self.my_params,"Fichier":Fichier,"Testscript":Testscript}
            exec("myres="+myexpr,globals(),loc)
            if type(loc["myres"]) is bytes:
              string+=loc["myres"].decode()

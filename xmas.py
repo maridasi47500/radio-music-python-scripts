@@ -5,7 +5,6 @@ from render import Render
 from fichier import Fichier
 import subprocess
 from datetime import datetime
-from song import Song
 from myfunc import Myfunc
 from myrecording import Myrecording
 class Xmas(Myfunc):

@@ -96,20 +96,21 @@ values (?,?)
       """
       try:
         sql = ''' select * from songs
-                  where file = ? '''
+                  where file  like "%"+?+"%" '''
         conn = sqlite3.connect(self.db)
         cur = conn.cursor()
         cur.row_factory = sqlite3.Row
         cur.execute(sql, (project,))
-        conn.commit()
+        #conn.commit()
         aa= cur.fetchone()
+        print(aa)
       except Error as e:
-        print(e)
+        print(e,"hey erreir")
         aa= None
       finally:
-          if conn:
-              conn.close()
-          return aa
+        if conn:
+           conn.close()
+        return aa
   def get_song(self,project):
       """
       Create a new project into the projects table

@@ -19,7 +19,7 @@ class Tonalite(Model):
         self.con.commit()
         #self.con.close()
     def getall(self):
-        self.cur.execute("select tonalitedepart as note1, tonalitearrive as note2, myvalue as hey, file from tonalite")
+        self.cur.execute("select id, tonalitedepart as note1, tonalitearrive as note2, myvalue as hey, file from tonalite")
 
         row=self.cur.fetchall()
         return row
@@ -28,13 +28,18 @@ class Tonalite(Model):
 
         row=self.cur.fetchall()
         return row
+    def getbyfiles(self,file):
+        self.cur.execute("select tonalite.id,tonalite.tonalitedepart as note1, tonalite.tonalitearrive as note2, tonalite.myvalue as hey, tonalite.file, tonalite.song_id from tonalite where tonalite.file = ?",(file,))
+
+        row=self.cur.fetchone()
+        return row
     def getbyfile(self,file):
         self.cur.execute("select tonalite.id,tonalite.tonalitedepart as note1, tonalite.tonalitearrive as note2, tonalite.myvalue as hey, tonalite.file, tonalite.song_id from tonalite where tonalite.file = ?",(file,))
 
         row=self.cur.fetchall()
         return row
     def getbysongid(self,myid):
-        self.cur.execute("select tonalitedepart as note1, tonalitearrive as note2, myvalue as hey, file, song_id from tonalite where song_id = ?",(myid,))
+        self.cur.execute("select id,tonalitedepart as note1, tonalitearrive as note2, myvalue as hey, file, song_id from tonalite where song_id = ?",(myid,))
 
         row=self.cur.fetchall()
         return row

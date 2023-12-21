@@ -1,6 +1,6 @@
 from pydub import AudioSegment
 from tonalite import Tonalite
-from song import Song
+from mysong import Mysong
 from chaine import Chaine
 import sys
 
@@ -70,7 +70,10 @@ mynote=tones[counter]
 print(counter)
 myfilename=Chaine().fichier("hey.wav")
 
-song=Song().get_by_file(filename.split("/")[-1])
+search=filename.split("/")[-1].split(".")[0]
+print(search,"get by file")
+song=Mysong().getbyfile(search)
+print(song)
 matonalite=Tonalite().create({"song_id":song["id"],"tonalitedepart":ton_a,"tonalitearrive":ton_b,"file":myfilename,"myvalue":octaves})
 hipitch_sound.export(f"./uploads/{myfilename}", format="wav")
 try:

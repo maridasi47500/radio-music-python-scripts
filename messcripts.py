@@ -5,7 +5,7 @@ from render import Render
 from fichier import Fichier
 import subprocess
 from datetime import datetime
-from song import Song
+from vitesse import Vitesse
 from mysong import Mysong
 from chaine import Chaine
 from myfunc import Myfunc
@@ -19,6 +19,7 @@ class Messcripts(Myfunc):
     self.title="chercher des tonalités"
     self.myprogram=Myprogram
     self.dbSong=Mysong()
+    self.dbVitesse=Vitesse()
     self.figure=Render(self.title)
     self.recparams=["name","tonalitedepart","tonalitearrive","title","artist"]
     self.myrecparams=["myid"]
@@ -62,19 +63,14 @@ class Messcripts(Myfunc):
     return self
   def script3(self,myscrit):
     xx=self.get_mydata()(uploads=self.vitesseparamshey)
-    #myid=xx["myid"]
     vitesse=xx["vitesse"]
-    #song=self.dbSong.getbyid(myid)
-   
     programs=self.myprogram(xx["file"])
-    othername=xx["file"][-4:]+".wav"
-
-    #python3 tone.py in.wav a g
+    othername=xx["file"]
     hey=int(vitesse)
     if hey==50:
         hey=50
     elif hey > 50:
-        hey=(hey-50)*2
+        hey=(hey-50)/10
     elif hey < 50:
         hey=float(hey/50)
     programs.myargs(["python3","./messcript/pluslent_saschangerlahauteur.py","./uploads/"+othername, str(hey)])
@@ -84,7 +80,6 @@ class Messcripts(Myfunc):
         print("script 2 déjà executé")
     self.figure.set_my_params("redirect", "/songs")
     self.render_some_json(Fichier("./welcome","redirect.json").lire())
-
     return self
   def new(self,myscrit):
     self.figure.set_content(Fichier("./welcome","new.html").lire())

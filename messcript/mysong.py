@@ -31,12 +31,14 @@ class Mysong(Model):
         self.con.commit()
         return None
     def getbyfile(self,myid):
+        print(self.mydb)
+        print("select * from mysong where file like '%' || ? || '%'",(myid,))
+        print(myid)
         self.cur.execute("select * from mysong where file like '%' || ? || '%'",(myid,))
-        row=dict(self.cur.fetchone())
-        print(row["id"], "row id")
-        job=self.cur.fetchall()
+        row=self.cur.fetchone()
         return row
     def getbyid(self,myid):
+
         self.cur.execute("select * from mysong where id = ?",(myid,))
         row=dict(self.cur.fetchone())
         print(row["id"], "row id")
