@@ -29,7 +29,7 @@
 </td>
 <td>
 	script 2:
-	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Testscript("./uploads",item["file"]).messcripts(), erreur="pas d'articles", as_="myfile")%>
+	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Tonalite().getbysongid(item["id"]), erreur="pas d'articles", as_="myfile")%>
 </td>
 <td>
 	<%=item["tonalitedepart"]%> à <%=item["tonalitearrive"]%></td>
@@ -37,13 +37,10 @@
 	<label for="vitesse<%=item["id"]%>">vitesse</label>
 
 </td>
-	<%=render_collection(path="./welcome", view="_hey.html", mycollection=Testscript("./uploads",item["file"]).messcripts(), erreur="pas d'articles", as_="item")%>
-<td>
-
-	</td>
+<%=render_collection(path="./welcome", view="_hey.html", mycollection=Tonalite().getbysongid(item["id"]), erreur="<td>pas d'articles</td>", as_="item")%>
 <td>
 	script 3 plus/moins vite:
-	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Testscript("./uploads",item["file"]).messcriptsplusvite(), erreur="pas d'articles", as_="myfile")%>
+	<%=render_collection(path="./welcome", view="_mamusique.html", mycollection=Tonalite().getplusvite(item["id"]), erreur="pas d'articles", as_="myfile")%>
 </td>
 
 </tr>

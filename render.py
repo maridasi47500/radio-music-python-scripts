@@ -1,5 +1,6 @@
 from fichier import Fichier
 from testscript import Testscript
+from tonalite import Tonalite
 import os
 from db import Db
 class Render():
@@ -9,6 +10,7 @@ class Render():
     self.template="./template/radio.html"
     self.headingone=title
     self.collection={}
+    self.tonalite=Tonalite()
     self.my_params={"myoutput":""}
     self.collection_string=""
   def get_my_params(self):
@@ -80,7 +82,7 @@ class Render():
              except:
                mystr=""
              try:
-               loc={"params":self.my_params,"index":index,as_: res,"Testscript":Testscript,"render_collection":self.render_collection}
+               loc={"Tonalite":self.tonalite,"params":self.my_params,("index_"+as_): index,"index":index,as_: res,"Testscript":Testscript,"render_collection":self.render_collection}
                print(loc)
                string+=str(eval(myexpr, globals(), loc))
              except:

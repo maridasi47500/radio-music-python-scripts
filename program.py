@@ -7,7 +7,7 @@ class Myprogram:
   def myargs(self,a):
     #print(a)
     for x in a:
-        print("arg len",len(x))
+        print("arg len",len(x),x)
     self.someargs=a
   def run(self):
     runmyscript(self.someargs)

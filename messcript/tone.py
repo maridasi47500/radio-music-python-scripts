@@ -1,4 +1,7 @@
 from pydub import AudioSegment
+from tonalite import Tonalite
+from song import Song
+from chaine import Chaine
 import sys
 
 import numpy as np
@@ -65,8 +68,11 @@ hipitch_sound = hipitch_sound.set_frame_rate(44100)
 print(ton_b)
 mynote=tones[counter]
 print(counter)
-myfilename=filename[:-4].split("/")[-1]
-hipitch_sound.export(f"./uploads/octave_{ton_a}_{ton_b}_{octaves}_{myfilename}.wav", format="wav")
+myfilename=Chaine().fichier("hey.wav")
+
+song=Song().get_by_file(filename.split("/")[-1])
+matonalite=Tonalite().create({"song_id":song["id"],"tonalitedepart":ton_a,"tonalitearrive":ton_b,"file":myfilename,"myvalue":octaves})
+hipitch_sound.export(f"./uploads/{myfilename}", format="wav")
 try:
 
   counter+=1

@@ -28,10 +28,12 @@ class Testscript:
       myname=self.name.replace(".mp3",mymusic)
       myname=myname.replace(".mp4",mymusic)
       maliste=[]
-      print(liste(self.path))
+      #print(liste(self.path))
       for x in liste(self.path):
 
+
           if myname in x and x != myname and "faster" in x:
+              print("plusvite",x,myname)
               note=x.split("_")
               print(note)
               hey=str(note[1])

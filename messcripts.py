@@ -67,7 +67,8 @@ class Messcripts(Myfunc):
     #song=self.dbSong.getbyid(myid)
    
     programs=self.myprogram(xx["file"])
-    othername=xx["file"].split(".")[0]+".wav"
+    othername=xx["file"][-4:]+".wav"
+
     #python3 tone.py in.wav a g
     hey=int(vitesse)
     if hey==50:
