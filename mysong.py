@@ -36,6 +36,10 @@ class Mysong(Model):
         print(row["id"], "row id")
         job=self.cur.fetchall()
         return row
+    def getallbyid(self,myid):
+        self.cur.execute("select * from mysong where id = ?",(myid,))
+        job=self.cur.fetchall()
+        return job
     def getbyid(self,myid):
         self.cur.execute("select * from mysong where id = ?",(myid,))
         row=dict(self.cur.fetchone())

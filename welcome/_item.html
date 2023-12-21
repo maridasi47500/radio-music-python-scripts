@@ -14,6 +14,7 @@
 </td>
 <td>
 <%="le script 1 a été exécuté" if Testscript("./uploads",item["file"]).existe() else ""%>
+	<%=render_collection(path="./welcome", view="_ecouter.html", mycollection=Song.getallbyid(item["id"]), erreur="pas d'articles", as_="myfile")%>
 </td>
 <td>
 <form method="post" action="/script2">
